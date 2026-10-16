@@ -169,7 +169,22 @@ h2.sec{font-size:clamp(26px,3.5vw,42px);line-height:1.1;letter-spacing:-.025em;m
   color:var(--blue);margin-bottom:9px}
 .who--alt{color:var(--teal)}
 .card h3{font-size:22px;line-height:1.2;letter-spacing:-.02em;margin:0 0 14px;font-weight:800}
-.card .detail{font-size:15px;line-height:1.55;color:var(--body);margin:0 0 20px}
+.card .lede{font-size:15px;line-height:1.56;color:var(--body);margin:0 0 16px}
+.card .ce{display:inline-block;align-self:flex-start;font-size:12px;font-weight:700;color:var(--blue-deep);
+  background:#EEF3FF;border:1px solid #D9E4FF;padding:5px 11px;border-radius:999px;margin:0 0 18px}
+.card--alt .ce{color:var(--teal);background:#E9F7F4;border-color:#C8EAE3}
+.card ul.spec{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:9px}
+.card ul.spec li{position:relative;padding-left:22px;font-size:14.5px;color:var(--body);line-height:1.5}
+.card ul.spec li:before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:2px;background:var(--ac)}
+.card .ph-block{flex:1;display:grid;place-items:center;text-align:center;margin:0 0 20px;padding:24px 18px;
+  border:2px dashed #C7CEDC;border-radius:12px;background:#FBFCFE}
+.card .ph-block b{display:block;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:8px}
+.card .ph-block span{font-size:14px;line-height:1.5;color:var(--body);max-width:30ch}
+.card .outcome{margin:0 0 22px;padding-top:16px;border-top:1px solid var(--line-2);
+  font-size:14.5px;line-height:1.5;color:var(--ink);font-weight:600}
+.card .outcome em{display:block;font-style:normal;font-size:11px;font-weight:800;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:5px}
 .card .btn{width:100%;margin-top:auto;position:relative;overflow:hidden}
 .card .btn:after{content:"";position:absolute;top:0;bottom:0;left:-120%;width:55%;z-index:2;pointer-events:none;
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);
@@ -412,6 +427,14 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
         <div class="price"><b>$299</b><span>1 hr ADA CE</span></div>
         <span class="who">A newer dentist building your fundamentals</span>
         <h3>3 Minute Crown Prep System</h3>
+        <p class="lede">From crown appointments that run over, to one repeatable system you trust.</p>
+        <span class="ce">1 hour &middot; ADA CE</span>
+        <div class="ph-block">
+          <div>
+            <b>Curriculum</b>
+            <span>Three bullet points needed from the client for this course.</span>
+          </div>
+        </div>
         <a class="btn btn--line" href="#">View course</a>
       </article>
 
@@ -420,7 +443,14 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
         <div class="price"><b>$2,995</b><span>8 hrs ADA CE</span></div>
         <span class="who">Ready to start doing veneers</span>
         <h3>The Veneer Blueprint Course</h3>
-        <p class="detail">Office Hours bonus included</p>
+        <p class="lede">Build a reliable foundation, establish your workflow, and gain the confidence to complete predictable veneer cases.</p>
+        <span class="ce">8 hours &middot; ADA CERP recognized</span>
+        <ul class="spec">
+          <li>All 6 veneer prep styles and bur sequence</li>
+          <li>Comprehensive smile design, lab communication, bonding protocols</li>
+          <li>Office Hours with Dr. Patel included</li>
+        </ul>
+        <p class="outcome"><em>Outcome</em>Confidently complete a 10-unit veneer case</p>
         <a class="btn btn--solid" href="#">Enroll now</a>
       </article>
 
@@ -428,7 +458,14 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
         <div class="price"><b>$2,995</b><span>9 hrs ADA CE</span></div>
         <span class="who who--alt">Ready for the most conservative cases</span>
         <h3>No Prep &amp; Prepless Veneer Course</h3>
-        <p class="detail">Office Hours bonus included</p>
+        <p class="lede">Expand into conservative, additive dentistry with advanced technique and specialized case strategy.</p>
+        <span class="ce">9 hours &middot; ADA CERP recognized</span>
+        <ul class="spec">
+          <li>Conservative and additive case selection</li>
+          <li>Smile design for no prep candidates, materials and labs</li>
+          <li>Office Hours with Dr. Patel included</li>
+        </ul>
+        <p class="outcome"><em>Outcome</em>Confidently complete a 10-unit no prep and prepless case</p>
         <a class="btn btn--line" href="#">Enroll now</a>
       </article>
     </div>
