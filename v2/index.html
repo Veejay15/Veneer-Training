@@ -39,7 +39,7 @@ a{color:var(--blue-deep)}
 header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);
   backdrop-filter:saturate(1.6) blur(10px);border-bottom:1px solid var(--line)}
 .bar{display:flex;align-items:center;gap:26px;height:76px}
-.brand img{height:40px;width:auto}
+.brand img{height:36px;width:auto}
 nav.main{margin-left:auto;display:flex;align-items:center;gap:28px}
 nav.main a{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
   color:var(--ink);text-decoration:none;white-space:nowrap}
@@ -56,14 +56,31 @@ nav.main a.is-courses{color:var(--blue)}
 .btn--line:hover{border-color:var(--blue);color:var(--blue)}
 .btn--white{background:#fff;color:var(--ink)}
 
-/* ---------- hero (live site copy, unchanged) ---------- */
+/* ---------- hero: background video loop ---------- */
 .hero{position:relative;background:#0b0f18;color:#fff;overflow:hidden}
-.hero-img{position:absolute;inset:0}
-.hero-img img{width:100%;height:100%;object-fit:cover;object-position:72% 30%}
-.hero-img:after{content:"";position:absolute;inset:0;
-  background:linear-gradient(100deg,rgba(8,12,20,.94) 0%,rgba(8,12,20,.86) 38%,rgba(8,12,20,.35) 66%,rgba(8,12,20,.12) 100%)}
-.hero-in{position:relative;padding:112px 0 104px;max-width:640px}
-.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.06;letter-spacing:-.02em;margin:0 0 18px;
+.hero-media{position:absolute;inset:0}
+.hero-media video{width:100%;height:100%;object-fit:cover;object-position:70% center;display:block}
+.hero-media:after{content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(8,12,20,.95) 0%,rgba(8,12,20,.9) 36%,rgba(8,12,20,.5) 62%,rgba(8,12,20,.22) 100%)}
+.hero-in{position:relative;padding:104px 0 96px;max-width:660px}
+.hero .tagline{font-size:clamp(20px,2.4vw,27px);line-height:1.25;margin:0 0 18px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.hero .reassure{margin:24px 0 0;font-size:15.5px;line-height:1.55;color:#C9D2E3}
+.hero .reassure b{display:block;color:#fff;font-weight:700;margin-top:3px}
+@media(max-width:820px){
+  .hero-media video{object-position:center}
+  .hero-media:after{background:linear-gradient(180deg,rgba(8,12,20,.78) 0%,rgba(8,12,20,.86) 55%,rgba(8,12,20,.92) 100%)}
+}
+.helps-label{font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--blue);margin:8px 0 18px}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.benefit{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px 22px 60px;box-shadow:var(--shadow)}
+.benefit:before{content:"\2713";position:absolute;left:20px;top:21px;width:26px;height:26px;border-radius:50%;
+  background:#EEF3FF;color:var(--blue-deep);font-size:13px;font-weight:800;display:grid;place-items:center}
+.benefit b{display:block;font-size:16.5px;font-weight:800;letter-spacing:-.01em;margin-bottom:6px;line-height:1.3}
+.benefit p{margin:0;font-size:15px;line-height:1.55;color:var(--body)}
+.closer{margin:30px 0 0;font-size:clamp(18px,2vw,21px);font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+@media(max-width:1000px){.benefits{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.benefits{grid-template-columns:1fr}}
+.hero h1{font-size:clamp(32px,4.5vw,52px);line-height:1.06;letter-spacing:-.02em;margin:0 0 18px;
   font-weight:800;text-transform:uppercase;text-wrap:balance}
 .hero h2{font-size:clamp(20px,2.4vw,27px);line-height:1.2;margin:0 0 32px;font-weight:800;
   text-transform:uppercase;letter-spacing:-.01em;color:#fff}
@@ -144,7 +161,11 @@ h2.sec{font-size:clamp(26px,3.5vw,42px);line-height:1.1;letter-spacing:-.025em;m
   background-repeat:no-repeat;background-position:left top;background-size:0% 4px;
   transition:transform .55s cubic-bezier(.16,1,.3,1), box-shadow .55s cubic-bezier(.16,1,.3,1),
              border-color .4s ease, background-size .6s cubic-bezier(.16,1,.3,1)}
-.card--alt{--ac:#0D7C6B;--ac2:#36A892}
+.card--alt,.card--free{--ac:#0D7C6B;--ac2:#36A892}
+.card--soon{--ac:#78808F;--ac2:#A2AAB8}
+.card.card--free .ce,.card.card--alt .ce{color:var(--teal);background:#E9F7F4;border-color:#C8EAE3}
+.card.card--soon .ce{color:#5E6676;background:#F1F2F5;border-color:#E2E5EB}
+.price b.free{color:var(--teal)}
 .card--rec{border-color:#CFD8EC;background-size:100% 4px;
   box-shadow:0 2px 4px rgba(12,18,34,.05),0 24px 54px -20px rgba(65,105,225,.34)}
 .card>*{position:relative;z-index:1}
@@ -170,6 +191,8 @@ h2.sec{font-size:clamp(26px,3.5vw,42px);line-height:1.1;letter-spacing:-.025em;m
 .who{display:block;font-size:11.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;
   color:var(--blue);margin-bottom:9px}
 .who--alt{color:var(--teal)}
+.who--soon{color:#78808F}
+.badge--soon{background:#78808F;box-shadow:none}
 .card h3{font-size:22px;line-height:1.2;letter-spacing:-.02em;margin:0 0 14px;font-weight:800}
 .card .lede{font-size:15px;line-height:1.56;color:var(--body);margin:0 0 16px}
 .card .ce{display:inline-block;align-self:flex-start;font-size:12px;font-weight:700;color:var(--blue-deep);
@@ -231,6 +254,11 @@ h2.sec{font-size:clamp(26px,3.5vw,42px);line-height:1.1;letter-spacing:-.025em;m
   font-size:20px;color:var(--ink);padding-left:4px;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
 .vid .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;color:#fff;font-weight:700;font-size:14.5px;
   background:linear-gradient(0deg,rgba(0,0,0,.78),transparent)}
+a.vid{display:block;text-decoration:none;color:#fff}
+.vid.pod img{object-position:center 58%}
+.vid .play span{transition:transform .3s ease}
+@media(hover:hover){a.vid:hover .play span{transform:scale(1.08)}}
+.mem .meta em.limited{display:block;margin-top:8px;font-style:italic;color:#AFB9CE}
 .embed-ph{border:2px dashed #C7CEDC;border-radius:16px;background:#fff;display:grid;place-items:center;
   text-align:center;padding:34px 24px;aspect-ratio:16/10}
 .embed-ph b{display:block;font-size:12px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);margin-bottom:9px}
@@ -304,7 +332,7 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
 
 <header class="site">
   <div class="wrap bar">
-    <a class="brand" href="#"><img src="../assets/logo.png" alt="Veneer Training Network"></a>
+    <a class="brand" href="#"><img src="../assets/logo-transparent.png" alt="Veneer Training Network"></a>
     <button class="burger" aria-label="Menu">&#9776;</button>
     <nav class="main">
       <a href="#ce">CE Info</a>
@@ -317,31 +345,45 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
   </div>
 </header>
 
-<!-- ===== SECTION 0 · ABOVE THE FOLD (left as is) ===== -->
+<!-- ===== HERO · background video loop ===== -->
 <section class="hero" style="padding:0">
-  <div class="hero-img"><img src="../assets/hero.jpg" alt=""></div>
+  <div class="hero-media">
+    <video id="heroVideo" muted loop playsinline preload="metadata" aria-hidden="true"
+      poster="../assets/hero-desktop.jpg"
+      data-desktop="../assets/hero-desktop.mp4" data-desktop-poster="../assets/hero-desktop.jpg"
+      data-mobile="../assets/hero-mobile.mp4" data-mobile-poster="../assets/hero-mobile.jpg"></video>
+  </div>
   <div class="wrap">
     <div class="hero-in">
-      <span class="eyebrow"><i></i>For dentists ready to take on more cosmetic cases</span>
-      <h1>Learn veneers from a dentist who does them every day.</h1>
-      <p class="lede">From single crowns to full smile makeovers, each course takes you one clear step further, so you always know what to learn next.</p>
+      <h1>Online Veneer &amp; Cosmetic Dentistry Education</h1>
+      <p class="tagline">Feel Confident. Master Veneers. Transform Smiles.</p>
+      <p class="lede">Learn how to plan and deliver veneer cases with confidence through practical education, step-by-step clinical workflows, clinical case reviews, and proven systems designed for dentists wanting to grow.</p>
       <div class="hero-cta">
-        <a class="btn btn--solid" href="#courses">Find your starting point</a>
-        <a class="btn btn--white" href="#free">Start free</a>
+        <a class="btn btn--solid" href="#courses">Explore Courses &amp; Memberships</a>
       </div>
+      <p class="reassure">New to veneers? You&rsquo;re in the right place.<b>Learn the process. Build your confidence. Grow your skills.</b></p>
     </div>
   </div>
 </section>
 
-<!-- ===== SECTION 1 · TRANSFORMATION PROMISE ===== -->
+<!-- ===== READY TO START ===== -->
 <section style="padding-bottom:0">
   <div class="wrap">
     <div class="shead">
-      <span class="eyebrow"><i></i>Our promise</span>
-      <h2 class="sec">From single crowns to full smile makeovers</h2>
-      <p class="promise">We take dentists from referring out cosmetic cases to planning, prepping, and delivering them with confidence, and building the practice that comes with it.</p>
-      <p>Every dentist grows through the same progression: single crowns, quadrant dentistry, two-to-four-unit anterior cases, eight-to-ten-unit smile makeovers, and eventually full-arch cases. Each Veneer Training Network course is built for one step on that path, so you always know what to learn next.</p>
+      <h2 class="sec">Ready to Start Doing Veneers With Confidence?</h2>
+      <p class="promise">You don&rsquo;t have to figure out how to do veneers on your own.</p>
+      <p>Whether you&rsquo;re new to cosmetic dentistry or have been hesitant to take on veneer cases, Veneer Training gives you the education, clinical guidance, and step-by-step systems to help you move forward with greater confidence.</p>
     </div>
+    <p class="helps-label">Our courses and memberships help you:</p>
+    <div class="benefits">
+      <div class="benefit"><b>Know where to start</b><p>Build a strong foundation with veneers and cosmetic dentistry, from case selection to treatment planning.</p></div>
+      <div class="benefit"><b>Follow a clear process</b><p>Learn structured clinical workflows so you know what to do at each stage of treatment.</p></div>
+      <div class="benefit"><b>Approach cases with confidence</b><p>Develop the skills and knowledge to make more informed clinical decisions.</p></div>
+      <div class="benefit"><b>Deliver more predictable results</b><p>Strengthen your understanding of the techniques and protocols that support consistent care.</p></div>
+      <div class="benefit"><b>Become more efficient</b><p>Refine your workflows and approach veneer cases with greater organization.</p></div>
+      <div class="benefit"><b>Grow your cosmetic practice</b><p>Build the skills to confidently deliver more veneer cases for your patients.</p></div>
+    </div>
+    <p class="closer">Learn the process. Build your confidence. Grow your skills.</p>
   </div>
 </section>
 
@@ -423,9 +465,24 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
     <div class="shead">
       <span class="eyebrow"><i></i>Find your path</span>
       <h2 class="sec">Where should you start?</h2>
+      <p>Every course includes The Learning Lab: real case breakdowns, smile design discussions, and a dentist community.</p>
     </div>
 
     <div class="cards">
+      <article class="card card--free">
+        <div class="price"><b class="free">Free</b><span>No course purchase required</span></div>
+        <span class="who who--alt">New to veneers or not sure yet</span>
+        <h3>The Learning Lab</h3>
+        <p class="lede">Real case breakdowns, smile design discussions, and a dentist community.</p>
+        <span class="ce">Free Veneer Training Network account</span>
+        <ul class="spec">
+          <li>Monthly case reviews and tips</li>
+          <li>Dr. Patel&rsquo;s 12 rules for smile design</li>
+          <li>Included with every course</li>
+        </ul>
+        <a class="btn btn--line" href="#">Join free</a>
+      </article>
+
       <article class="card">
         <div class="price"><b>$299</b><span>1 hr ADA CE</span></div>
         <span class="who">A newer dentist building your fundamentals</span>
@@ -437,7 +494,6 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
           <li>4 timed posterior preps, each critiqued</li>
           <li>Printable decision tree and two checklists</li>
         </ul>
-        <p class="outcome"><em>Outcome</em>Get chair time back on every appointment</p>
         <a class="btn btn--line" href="#">View course</a>
       </article>
 
@@ -453,7 +509,6 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
           <li>Comprehensive smile design, lab communication, bonding protocols</li>
           <li>Office Hours with Dr. Patel included</li>
         </ul>
-        <p class="outcome"><em>Outcome</em>Confidently complete a 10-unit veneer case</p>
         <a class="btn btn--solid" href="#">Enroll now</a>
       </article>
 
@@ -468,12 +523,38 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
           <li>Smile design for no prep candidates, materials and labs</li>
           <li>Office Hours with Dr. Patel included</li>
         </ul>
-        <p class="outcome"><em>Outcome</em>Confidently complete a 10-unit no prep and prepless case</p>
         <a class="btn btn--line" href="#">Enroll now</a>
       </article>
-    </div>
 
-    <p class="included"><b>Included with every course.</b> The Learning Lab: real case breakdowns, smile design discussions, and a dentist community.</p>
+      <article class="card">
+        <div class="price"><b>$1,495</b><span>PDF guides + video intro</span></div>
+        <span class="who">Doing cases and want a system for every one</span>
+        <h3>The Veneer Operating System</h3>
+        <p class="lede">Put everything into practice in your office, case by case.</p>
+        <span class="ce">Self-paced</span>
+        <ul class="spec">
+          <li>Step-by-step PDF guides</li>
+          <li>Video introduction to the system</li>
+          <li>Run every case the same predictable way</li>
+        </ul>
+        <a class="btn btn--line" href="#">View program</a>
+      </article>
+
+      <article class="card card--soon">
+        <span class="badge badge--soon">Coming soon</span>
+        <div class="price"><b>Waitlist</b><span>Enrollment is limited</span></div>
+        <span class="who who--soon">Looking for ongoing support</span>
+        <h3>Veneer Training Network Membership</h3>
+        <p class="lede">A members-only study club for dentists doing cosmetic work.</p>
+        <span class="ce">Waitlist open</span>
+        <ul class="spec">
+          <li>Live workshops with Dr. Patel</li>
+          <li>Peer case reviews</li>
+          <li>A private community</li>
+        </ul>
+        <a class="btn btn--line" href="https://vvt.kit.com/5d0d976ed6">Join the waitlist</a>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -497,8 +578,8 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
 <section>
   <div class="wrap">
     <div class="shead">
-      <span class="eyebrow"><i></i>Sound familiar?</span>
-      <h2 class="sec">Veneers weren&rsquo;t taught in dental school.</h2>
+      <span class="eyebrow"><i></i>Veneers weren&rsquo;t taught in dental school</span>
+      <h2 class="sec">Are you struggling with&hellip;</h2>
     </div>
     <div class="pains">
       <div class="pain">
@@ -529,7 +610,7 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
       <div class="pain">
         <p class="q">You don&rsquo;t know how to market your cosmetic work</p>
         <p class="a">Photography, case presentation, and social media.</p>
-        <span class="tag">Veneer Blueprint bonus</span>
+        <span class="tag">Veneer Blueprint</span>
       </div>
     </div>
     <p class="proofline">The most common result our students report: <b>more confidence in the consult</b> and in presenting veneers to patients.</p>
@@ -570,12 +651,11 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
         <div class="play"><span>&#9654;</span></div>
         <div class="cap">Dr. Bianca Velayo &middot; video testimonial</div>
       </div>
-      <div class="embed-ph">
-        <div>
-          <b>Podcast embed</b>
-          <p>Placeholder for the podcast player, pending the embed code.</p>
-        </div>
-      </div>
+      <a class="vid pod" href="https://open.spotify.com/playlist/0WfpaeOCb71kQ8mU2QG1Jx" target="_blank" rel="noopener">
+        <img src="../assets/podcast-1.jpg" alt="Dr. Tejas Patel recording the podcast">
+        <div class="play"><span>&#9654;</span></div>
+        <div class="cap">The Podcast &middot; Listen on Spotify</div>
+      </a>
     </div>
     <div style="text-align:center;margin-top:34px"><a class="btn btn--line" href="#">Read more reviews</a></div>
   </div>
@@ -585,8 +665,7 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
 <section id="free">
   <div class="wrap">
     <div class="shead">
-      <span class="eyebrow"><i></i>Free resources</span>
-      <h2 class="sec">Start learning free</h2>
+      <h2 class="sec">Free Resources</h2>
     </div>
     <div class="free">
       <div class="freecard">
@@ -599,7 +678,7 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
         <span class="who">The Podcast</span>
         <h3>Real cases, real failures</h3>
         <p>Real cases, real failures, real conversations about cosmetic dentistry.</p>
-        <a class="btn btn--line" href="#">Listen</a>
+        <a class="btn btn--line" href="https://open.spotify.com/playlist/0WfpaeOCb71kQ8mU2QG1Jx" target="_blank" rel="noopener">Listen</a>
       </div>
     </div>
     <p class="freenote">The Learning Lab comes with a free Veneer Training Network account.</p>
@@ -614,10 +693,10 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
       <h2>A private cosmetic dentistry study club</h2>
       <p class="k">Where you don&rsquo;t just learn techniques&mdash;you see how an expert thinks through real cases.</p>
       <div class="flow">
-        <span>Learn</span><span>Apply</span><span>Submit</span><span>Review</span><span>Discuss</span><span>Build</span>
+        <span>Learn</span><span>Submit</span><span>Review</span><span>Discuss</span><span>Build</span>
       </div>
-      <p class="meta">A live 60-minute session with Dr. Patel, your own cases reviewed, and a private dentist-only community. Limited to 30 dentists. $299/month.</p>
-      <a class="btn btn--solid" href="#">Join the waitlist</a>
+      <p class="meta">A members-only study club for dentists doing cosmetic work &mdash; live workshops with Dr. Patel, peer case reviews, and a private community.<em class="limited">Enrollment is limited. Join the waitlist to reserve your spot.</em></p>
+      <a class="btn btn--solid" href="https://vvt.kit.com/5d0d976ed6">Join the waitlist</a>
     </div>
   </div>
 </section>
@@ -664,7 +743,7 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
   <div class="wrap">
     <div class="top">
       <div>
-        <img class="logo" src="../assets/logo.png" alt="Veneer Training Network">
+        <img class="logo" src="../assets/logo-transparent.png" alt="Veneer Training Network">
         <p style="margin:0;max-width:40ch">Veneer Training Network by Dr. Tejas Patel<br>3507 N. Lamar Blvd, PO Box 302498, Austin, TX 78703</p>
         <p style="margin:14px 0 0"><a href="mailto:contact@veneertraining.com" style="display:inline">contact@veneertraining.com</a></p>
       </div>
@@ -694,6 +773,28 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
 </footer>
 
 <script>
+/* hero loop: desktop or mobile cut, poster only for reduced-motion */
+(function () {
+  var v = document.getElementById('heroVideo');
+  if (!v) return;
+  var mq = window.matchMedia('(max-width:820px)');
+  var still = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var current = null;
+  function pick() {
+    var key = mq.matches ? 'mobile' : 'desktop';
+    if (key === current) return;
+    current = key;
+    v.poster = v.dataset[key + 'Poster'];
+    if (still) return;
+    v.src = v.dataset[key];
+    v.load();
+    var p = v.play();
+    if (p && p.catch) p.catch(function () {});
+  }
+  pick();
+  if (mq.addEventListener) mq.addEventListener('change', pick);
+})();
+
 (function () {
   if (!window.matchMedia('(hover:hover)').matches) return;
   if (window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
