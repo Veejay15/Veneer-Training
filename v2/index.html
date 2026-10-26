@@ -70,6 +70,11 @@ nav.main a.is-courses{color:var(--blue)}
 .hero{position:relative;background:#0b0f18;color:#fff;overflow:hidden}
 .hero-media{position:absolute;inset:0}
 .hero-media video{width:100%;height:100%;object-fit:cover;object-position:70% center;display:block}
+.hero-toggle{position:absolute;right:22px;bottom:22px;z-index:3;width:42px;height:42px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.4);background:rgba(8,12,20,.5);color:#fff;display:grid;place-items:center;
+  cursor:pointer;font-size:12px;line-height:1;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:background .2s}
+.hero-toggle:hover{background:rgba(8,12,20,.75)}
+.hero-toggle:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .hero-media:after{content:"";position:absolute;inset:0;
   background:linear-gradient(100deg,rgba(8,12,20,.95) 0%,rgba(8,12,20,.9) 36%,rgba(8,12,20,.5) 62%,rgba(8,12,20,.22) 100%)}
 .hero-in{position:relative;padding:104px 0 96px;max-width:660px}
@@ -277,7 +282,29 @@ a.vid{display:block;text-decoration:none;color:#fff}
 
 /* ---------- free resources ---------- */
 .free{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.freecard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 30px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.freecard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.freebody{padding:26px 30px 30px;display:flex;flex-direction:column;flex:1}
+.freeimg{position:relative;display:block;aspect-ratio:16/9;background:#fff;border-bottom:1px solid var(--line);overflow:hidden}
+.freeimg img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.freeimg--pod img{object-position:center 58%}
+.freeimg .playdot{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;
+  background:rgba(255,255,255,.94);color:var(--ink);display:grid;place-items:center;font-size:18px;padding-left:4px;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+@media(hover:hover){.freecard:hover .freeimg img{transform:scale(1.03)}}
+
+/* testimonial videos: tall vertical beside a 2x2 grid */
+.tvids{display:grid;grid-template-columns:.62fr 1fr 1fr;gap:16px;margin-top:34px;align-items:start}
+.tvid{margin:0}
+.tvid--tall{grid-row:1 / span 2;align-self:stretch;display:flex;flex-direction:column}
+.tvid video{display:block;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;border:1px solid var(--line);object-fit:cover}
+.tvid--tall video{aspect-ratio:auto;flex:1;min-height:0;height:100%}
+.tvid figcaption{font-size:13.5px;font-weight:700;color:var(--muted);margin-top:8px}
+@media(max-width:900px){
+  .tvids{grid-template-columns:1fr 1fr}
+  .tvid--tall{grid-row:auto;grid-column:1 / -1;max-width:340px;justify-self:center;width:100%}
+  .tvid--tall video{aspect-ratio:9/16;flex:none;height:auto}
+}
+@media(max-width:560px){.tvids{grid-template-columns:1fr}}
 .freecard h3{font-size:23px;letter-spacing:-.02em;margin:0 0 12px;font-weight:800}
 .freecard p{color:var(--body);font-size:15.5px;line-height:1.6;margin:0 0 22px;flex:1}
 .freenote{margin-top:22px;font-size:15.5px;color:var(--body)}
@@ -363,6 +390,7 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
       data-desktop="../assets/hero-desktop.mp4" data-desktop-poster="../assets/hero-desktop.jpg"
       data-mobile="../assets/hero-mobile.mp4" data-mobile-poster="../assets/hero-mobile.jpg"></video>
   </div>
+  <button class="hero-toggle" type="button" aria-label="Play background video">&#9654;</button>
   <div class="wrap">
     <div class="hero-in">
       <h1>Online Veneer &amp; Cosmetic Dentistry Education</h1>
@@ -536,9 +564,9 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
         <a class="btn btn--line" href="#">Enroll now</a>
       </article>
 
-      <article class="card">
-        <div class="price"><b>$1,495</b><span>PDF guides + video intro</span></div>
-        <span class="who">Doing cases and want a system for every one</span>
+      <article class="card card--soon">
+        <div class="price"><b>Coming soon</b><span>PDF guides + video intro</span></div>
+        <span class="who who--soon">Doing cases and want a system for every one</span>
         <h3>The Veneer Operating System</h3>
         <p class="lede">Put everything into practice in your office, case by case.</p>
         <span class="ce">Self-paced</span>
@@ -623,7 +651,7 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
         <span class="tag">Veneer Blueprint</span>
       </div>
     </div>
-    <p class="proofline">The most common result our students report: <b>more confidence in the consult</b> and in presenting veneers to patients.</p>
+    <p class="proofline">The most common results our students report: <b>more confidence</b> in doing veneer cases start to finish.</p>
   </div>
 </section>
 
@@ -655,17 +683,37 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
         <cite>Veneer Blueprint student</cite>
       </div>
     </div>
-    <div class="media">
-      <div class="vid">
-        <img src="../assets/r-bianca.jpg" alt="Dr. Bianca Velayo video testimonial">
-        <div class="play"><span>&#9654;</span></div>
-        <div class="cap">Dr. Bianca Velayo &middot; video testimonial</div>
-      </div>
-      <a class="vid pod" href="https://open.spotify.com/playlist/0WfpaeOCb71kQ8mU2QG1Jx" target="_blank" rel="noopener">
-        <img src="../assets/podcast-1.jpg" alt="Dr. Tejas Patel recording the podcast">
-        <div class="play"><span>&#9654;</span></div>
-        <div class="cap">The Podcast &middot; Listen on Spotify</div>
-      </a>
+    <div class="tvids">
+      <figure class="tvid tvid--tall">
+        <video controls preload="none" playsinline poster="https://www.veneertraining.com/wp-content/uploads/2026/08/review-poster-bianca-velayo.jpg">
+          <source src="https://www.veneertraining.com/wp-content/uploads/2026/08/review-bianca-velayo-1.mp4" type="video/mp4">
+        </video>
+        <figcaption>Dr. Bianca Velayo</figcaption>
+      </figure>
+      <figure class="tvid">
+        <video controls preload="none" playsinline poster="https://www.veneertraining.com/wp-content/uploads/2026/08/vbp-video-website-update-poster.png">
+          <source src="https://www.veneertraining.com/wp-content/uploads/2024/05/video-2.mp4" type="video/mp4">
+        </video>
+        <figcaption>The Veneer Blueprint Course with Dr. Patel</figcaption>
+      </figure>
+      <figure class="tvid">
+        <video controls preload="none" playsinline poster="https://www.veneertraining.com/wp-content/uploads/2026/08/review-poster-daniel-sluyk.jpg">
+          <source src="https://www.veneertraining.com/wp-content/uploads/2024/05/video-3.mp4" type="video/mp4">
+        </video>
+        <figcaption>Daniel Sluyk</figcaption>
+      </figure>
+      <figure class="tvid">
+        <video controls preload="none" playsinline poster="https://www.veneertraining.com/wp-content/uploads/2026/08/review-poster-andrew-lyons.jpg">
+          <source src="https://www.veneertraining.com/wp-content/uploads/2024/05/Video-4.mp4" type="video/mp4">
+        </video>
+        <figcaption>Andrew Lyons</figcaption>
+      </figure>
+      <figure class="tvid">
+        <video controls preload="none" playsinline poster="https://www.veneertraining.com/wp-content/uploads/2026/08/review-poster-ben-jump.jpg">
+          <source src="https://www.veneertraining.com/wp-content/uploads/2024/05/Video-1-1.m4v" type="video/mp4">
+        </video>
+        <figcaption>Ben Jump</figcaption>
+      </figure>
     </div>
     <div style="text-align:center;margin-top:34px"><a class="btn btn--line" href="#">Read more reviews</a></div>
   </div>
@@ -679,16 +727,25 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
     </div>
     <div class="free">
       <div class="freecard">
-        <span class="who">The Learning Lab</span>
-        <h3>Real case breakdowns</h3>
-        <p>Real case breakdowns, smile design discussions, and a dentist community.</p>
-        <a class="btn btn--solid" href="#">Join free</a>
+        <div class="freeimg"><img src="../assets/free-resources.jpg" alt="Before and after porcelain veneer case" loading="lazy"></div>
+        <div class="freebody">
+          <span class="who">The Learning Lab</span>
+          <h3>Real case breakdowns</h3>
+          <p>Real case breakdowns, smile design discussions, and a dentist community.</p>
+          <a class="btn btn--solid" href="#">Join free</a>
+        </div>
       </div>
       <div class="freecard">
-        <span class="who">The Podcast</span>
-        <h3>Real cases, real failures</h3>
-        <p>Real cases, real failures, real conversations about cosmetic dentistry.</p>
-        <a class="btn btn--line" href="https://open.spotify.com/playlist/0WfpaeOCb71kQ8mU2QG1Jx" target="_blank" rel="noopener">Listen</a>
+        <a class="freeimg freeimg--pod" href="https://open.spotify.com/playlist/0WfpaeOCb71kQ8mU2QG1Jx" target="_blank" rel="noopener" aria-label="Listen to the podcast on Spotify">
+          <img src="../assets/podcast-1.jpg" alt="Dr. Tejas Patel recording the podcast" loading="lazy">
+          <span class="playdot" aria-hidden="true">&#9654;</span>
+        </a>
+        <div class="freebody">
+          <span class="who">The Podcast</span>
+          <h3>Real cases, real failures</h3>
+          <p>Real cases, real failures, real conversations about cosmetic dentistry.</p>
+          <a class="btn btn--line" href="https://open.spotify.com/playlist/0WfpaeOCb71kQ8mU2QG1Jx" target="_blank" rel="noopener">Listen</a>
+        </div>
       </div>
     </div>
     <p class="freenote">The Learning Lab comes with a free Veneer Training Network account.</p>
@@ -799,26 +856,52 @@ footer .legal{margin-top:26px;font-size:13px;color:#79839A}
   window.matchMedia('(min-width:821px)').addEventListener('change', function (m) { if (m.matches) set(false); });
 })();
 
-/* hero loop: desktop or mobile cut, poster only for reduced-motion */
+/* hero loop: desktop or mobile cut. Autoplays unless the visitor prefers
+   reduced motion; the button lets anyone play or pause it, including when
+   the browser or battery saver blocks autoplay */
 (function () {
-  var v = document.getElementById('heroVideo');
+  var v = document.getElementById('heroVideo'), btn = document.querySelector('.hero-toggle');
   if (!v) return;
   var mq = window.matchMedia('(max-width:820px)');
-  var still = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var held = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   var current = null;
+  function ui() {
+    if (!btn) return;
+    var on = !v.paused;
+    btn.innerHTML = on ? '&#10074;&#10074;' : '&#9654;';
+    btn.setAttribute('aria-label', on ? 'Pause background video' : 'Play background video');
+  }
+  function tryPlay() {
+    var p = v.play();
+    if (p && p.catch) p.catch(ui);
+  }
   function pick() {
     var key = mq.matches ? 'mobile' : 'desktop';
     if (key === current) return;
     current = key;
     v.poster = v.dataset[key + 'Poster'];
-    if (still) return;
     v.src = v.dataset[key];
     v.load();
-    var p = v.play();
-    if (p && p.catch) p.catch(function () {});
+    if (!held) tryPlay();
+    ui();
   }
+  v.addEventListener('play', ui);
+  v.addEventListener('pause', ui);
+  if (btn) btn.addEventListener('click', function () {
+    if (v.paused) { held = false; tryPlay(); } else { held = true; v.pause(); }
+  });
   pick();
   if (mq.addEventListener) mq.addEventListener('change', pick);
+})();
+
+/* testimonial videos: only one plays at a time */
+(function () {
+  var vids = document.querySelectorAll('.tvid video');
+  vids.forEach(function (x) {
+    x.addEventListener('play', function () {
+      vids.forEach(function (o) { if (o !== x) o.pause(); });
+    });
+  });
 })();
 
 (function () {
